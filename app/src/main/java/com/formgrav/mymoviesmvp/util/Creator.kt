@@ -7,9 +7,10 @@ import com.formgrav.mymoviesmvp.data.network.RetrofitNetworkClient
 import com.formgrav.mymoviesmvp.domain.api.MoviesInteractor
 import com.formgrav.mymoviesmvp.domain.api.MoviesRepository
 import com.formgrav.mymoviesmvp.domain.impl.MoviesInteractorImpl
-import com.formgrav.mymoviesmvp.presentation.MoviesSearchController
-import com.formgrav.mymoviesmvp.presentation.PosterController
-import com.formgrav.mymoviesmvp.ui.movies.MoviesAdapter
+import com.formgrav.mymoviesmvp.presentation.movies.MoviesSearchPresenter
+import com.formgrav.mymoviesmvp.presentation.poster.PosterPresenter
+import com.formgrav.mymoviesmvp.presentation.movies.MoviesView
+import com.formgrav.mymoviesmvp.presentation.poster.PosterView
 
 
 object Creator {
@@ -21,11 +22,11 @@ object Creator {
         return MoviesInteractorImpl(getMoviesRepository(context))
     }
 
-    fun provideMoviesSearchController(activity: Activity, adapter: MoviesAdapter): MoviesSearchController {
-        return MoviesSearchController(activity, adapter)
+    fun provideMoviesSearchPresenter(moviesView: MoviesView, context: Context): MoviesSearchPresenter {
+        return MoviesSearchPresenter(view = moviesView, context = context)
     }
 
-    fun providePosterController(activity: Activity): PosterController {
-        return PosterController(activity)
+    fun providePosterPresenter(posterView: PosterView, imageUrl: String): PosterPresenter {
+        return PosterPresenter(view = posterView, imageUrl = imageUrl)
     }
 }
