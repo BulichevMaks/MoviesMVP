@@ -51,7 +51,6 @@ class MainActivity : AppCompatActivity(), MoviesView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Кусочек кода, который был в Presenter
         placeholderMessage = findViewById(R.id.placeholderMessage)
         queryInput = findViewById(R.id.queryInput)
         moviesList = findViewById(R.id.locations)

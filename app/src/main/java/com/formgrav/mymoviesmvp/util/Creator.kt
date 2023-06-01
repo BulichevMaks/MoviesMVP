@@ -1,6 +1,5 @@
 package com.formgrav.mymoviesmvp.util
 
-import android.app.Activity
 import android.content.Context
 import com.formgrav.mymoviesmvp.data.MoviesRepositoryImpl
 import com.formgrav.mymoviesmvp.data.network.RetrofitNetworkClient
