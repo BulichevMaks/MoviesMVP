@@ -1,7 +1,6 @@
 package com.formgrav.mymoviesmvp.ui.movies
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -16,12 +15,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.formgrav.mymoviesmvp.R
 import com.formgrav.mymoviesmvp.domain.models.Movie
+import com.formgrav.mymoviesmvp.presentation.movies.MoviesSearchPresenter
 import com.formgrav.mymoviesmvp.presentation.movies.MoviesView
 import com.formgrav.mymoviesmvp.ui.movies.models.MoviesState
 import com.formgrav.mymoviesmvp.ui.poster.PosterActivity
 import com.formgrav.mymoviesmvp.util.Creator
+import moxy.MvpActivity
+import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
 
-class MainActivity : AppCompatActivity(), MoviesView {
+class MainActivity : MvpActivity(), MoviesView {
     companion object {
         private const val CLICK_DEBOUNCE_DELAY = 1000L
     }
@@ -38,8 +41,15 @@ class MainActivity : AppCompatActivity(), MoviesView {
 
     private val handler = Handler(Looper.getMainLooper())
 
-    private val moviesSearchPresenter =
-        Creator.provideMoviesSearchPresenter(moviesView = this, context = this)
+    @InjectPresenter
+    lateinit var moviesSearchPresenter: MoviesSearchPresenter
+
+    @ProvidePresenter
+    fun providePresenter(): MoviesSearchPresenter {
+        return Creator.provideMoviesSearchPresenter(
+            context = this.applicationContext,
+        )
+    }
 
     private lateinit var queryInput: EditText
     private lateinit var placeholderMessage: TextView
