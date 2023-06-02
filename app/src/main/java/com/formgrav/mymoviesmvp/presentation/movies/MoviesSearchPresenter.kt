@@ -19,12 +19,10 @@ class MoviesSearchPresenter(
 
     companion object {
         private const val SEARCH_DEBOUNCE_DELAY = 2000L
-        private const val SEARCH_REQUEST_TOKEN = ""
+        private const val SEARCH_REQUEST_TOKEN = "SEARCH_REQUEST_TOKEN"
     }
 
     private var view: MoviesView? = null
-
-    private val movies = ArrayList<Movie>()
 
     private val handler = Handler(Looper.getMainLooper())
 
